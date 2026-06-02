@@ -1,0 +1,19 @@
+[{
+    "userName": "sushil34@gmail.com",
+    "password": "Sushil123",
+    "productName": "IPHONE 13 PRO",
+    "cvvNumber": "352",
+    "name" : "Sushil kumar maurya",
+    "applyCoupon": "rahulshettyacademy"
+
+},
+{
+    "userName": "raju34@gmail.com",
+    "password": "Sushil123",
+    "productName": "ZARA COAT 3",
+    "cvvNumber": "980",
+    "name" : "Raju singh",
+    "applyCoupon": "rahulshettyacademy"
+
+}
+]
