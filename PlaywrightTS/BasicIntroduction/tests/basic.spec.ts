@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 import {chromium} from '@playwright/test';
 
-test('browser', async({page})=>{
+test.skip('browser', async({page})=>{
     const browser = await chromium.launch({headless:false});
 
     // user context browser
@@ -25,14 +25,19 @@ test('browser', async({page})=>{
 
 
 //Basic test
-test.skip('user cannot login', async({page})=>{
+
+test('user cannot login', async({page})=>{
+
+    const email:string = "testingsushil9192@gmail.com";
+    const wrongpass:string = "Sushil14171";
+
     await page.goto("https://www.xbox.com/en-IN/");
     await page.click("//button[@type='button']");
-    await page.fill('#usernameEntry','mauryasushil419@gmail.com');
+    await page.fill('#usernameEntry',email);
     await page.click('button[type=submit]');
     await page.click('#idA_PWD_SwitchToCredPicker');
     await page.click('div[aria-label="Use your password"]');
-    await page.fill('//input[@type="password"]','Sus_hil403612@#');
+    await page.fill('//input[@type="password"]',wrongpass);
     await page.click('button[type=submit]');
     await expect(page.locator('div[role=alert]')).toHaveText("That password is incorrect for your Microsoft account.");
 })
