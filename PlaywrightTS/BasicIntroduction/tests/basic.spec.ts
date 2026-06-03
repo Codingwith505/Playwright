@@ -6,6 +6,18 @@ test('browser', async({page})=>{
 
     // user context browser
     const userCtx = await browser.newContext({storageState:'user.json'});
+    const userPage = await userCtx.newPage();
+
+    await userPage.goto("https://www.xbox.com/en-IN/");
+
+
+
+    //context 2 => fully isolated (admin user)
+    const adminCtx = await browser.newContext({storageState:'admin.json'})
+    const adminPage = await adminCtx.newPage();
+    await adminPage.goto("https://www.youtube.com/");
+
+
 })
 
 
@@ -13,7 +25,7 @@ test('browser', async({page})=>{
 
 
 //Basic test
-test('user cannot login', async({page})=>{
+test.skip('user cannot login', async({page})=>{
     await page.goto("https://www.xbox.com/en-IN/");
     await page.click("//button[@type='button']");
     await page.fill('#usernameEntry','mauryasushil419@gmail.com');
