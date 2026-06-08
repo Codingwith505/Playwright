@@ -1,16 +1,11 @@
-import {test,expect} from '@playwright/test';
-import {LoginPage,} from '../Pages/Login';
+import { test, expect } from '@playwright/test';
+import { LoginPage } from '../Pages/Login';
 
-test('Login xbox web',async({page})=>{
+test('Login xbox web', async ({ page }) => {
+  const loginPage = new LoginPage(page);
 
-    const loginPage = new LoginPage(page)
-    loginPage.goto();
-    loginPage.login("testingsushil9192@gmail.com","Sushil1417");
+  loginPage.dismissPopups();
 
-
-})
-
-test('purchase the product', async ({page})=>{
-
-})
-
+  await loginPage.goto();
+  await loginPage.login("testingsushil9192@gmail.com", "Sushil1417");
+});
