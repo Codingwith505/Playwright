@@ -1,7 +1,7 @@
-import { expect, Locator } from "@playwright/test";
-import { Page,BrowserContext  } from "./Base";
+import { Page, expect, Locator } from "@playwright/test";
+import { BasePage }  from "./Base";
 
-export class LoginPage {
+export class LoginPage extends BasePage {
   private readonly signInButton: Locator;
   private readonly emailInput: Locator;
   private readonly submitButton: Locator;
@@ -9,7 +9,8 @@ export class LoginPage {
   private readonly useYourPassword: Locator;
   private readonly passwordInput: Locator;
 
-  constructor(private page: Page) {
+  constructor(page:Page, ) {
+    super(page);
     this.signInButton = page.getByRole("button",{name:'ME', exact:true});
     this.emailInput = page.locator("#usernameEntry");
     this.submitButton = page.locator("button[type=submit]");
@@ -22,23 +23,14 @@ export class LoginPage {
     this.page.on("dialog", dialog => dialog.dismiss());
   }
 
-  async goto() {
-    await this.page.goto("https://www.xbox.com/en-IN", {
-      waitUntil: "domcontentloaded",
-      timeout: 60000,
-    });
-  }
 
   async login(email: string, pass: string) {
     await this.signInButton.first().click();
     await this.emailInput.fill(email);
     await this.submitButton.click();
-    await this.page.screenshot({path:'error.png',fullPage:true});
     await this.chooseToPassword.click();
     await this.useYourPassword.click();
     await this.passwordInput.fill(pass);
     await this.submitButton.click();
   }
 }
-
-export { expect } from "@playwright/test";
