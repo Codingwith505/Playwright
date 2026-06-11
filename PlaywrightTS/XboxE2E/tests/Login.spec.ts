@@ -6,4 +6,6 @@ test('Login xbox web', async ({ page }) => {
 
   await loginPage.goto("https://www.xbox.com/en-IN");
   await loginPage.login("testingsushil9192@gmail.com", "Sushil1417");
+  await loginPage.sucessfullLogin();
+  
 });
