@@ -26,10 +26,7 @@ export class CartPage extends BasePage{
 
     }
 
-    async getTextResult(){
-        await this.statusOfGame.click();
-
-    }
+    
 
 
 }
