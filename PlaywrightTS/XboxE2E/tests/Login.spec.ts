@@ -8,8 +8,10 @@ test('Login xbox web', async ({ page }) => {
 
   await loginPage.goto("https://www.xbox.com/en-IN");
   await loginPage.login("testingsushil9192@gmail.com", "Sushil1417");
+  await loginPage.dismissPopups();
   await loginPage.sucessfullLogin();
   await cartPage.searchGame("Fortnite");
+  await cartPage.getStatusName();
 
   
 });
