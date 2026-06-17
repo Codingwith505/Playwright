@@ -9,6 +9,7 @@ export class LoginPage extends BasePage {
   private readonly useYourPassword: Locator;
   private readonly passwordInput: Locator;
   private readonly loginsuccessfull:Locator;
+  private readonly selectfirstTime:Locator;
 
   constructor(page:Page, ) {
     super(page);
@@ -18,6 +19,7 @@ export class LoginPage extends BasePage {
     this.chooseToPassword = page.locator("#idA_PWD_SwitchToCredPicker");
     this.useYourPassword = page.locator('div[aria-label="Use your password"]');
     this.passwordInput = page.locator('//input[@type="password"]');
+    this.selectfirstTime = page.getByText('No');
     this.loginsuccessfull = page.getByText("MY ACCOUNT");
   }
 
@@ -34,9 +36,13 @@ export class LoginPage extends BasePage {
     await this.useYourPassword.click();
     await this.passwordInput.fill(pass);
     await this.submitButton.click();
+    await this.selectfirstTime.click();
   }
 
   async sucessfullLogin(){
-    await expect(this.loginsuccessfull).toContainText("MY ACCOUNT");
+    await this.page.waitForLoadState('networkidle');
+    const textSuccess = this.loginsuccessfull.textContent();
+    console.log(textSuccess);
+    await expect(this.loginsuccessfull).toContainText('MY ACCOUNT');
   }
 }

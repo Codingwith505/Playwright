@@ -20,12 +20,16 @@ export class CartPage extends BasePage{
         }
 
     async searchGame(gameName:string){
+        await this.page.waitForLoadState('networkidle');
         await this.clickSearchBar.click();
         await this.searchBar.fill(gameName);
         await this.getSelectResult(gameName).click();
 
     }
-
+    async getStatusName(){
+        const getText = this.statusOfGame.textContent();
+        console.log(getText);
+    }
     
 
 
