@@ -1,17 +1,14 @@
-import { test, expect } from '@playwright/test';
-import { LoginPage } from '../Pages/Login';
+import {test,expect} from '../Fixtures/fixture'
 import { CartPage } from '../Pages/CartPage';
 
-test('Login xbox web', async ({ page }) => {
-  const loginPage = new LoginPage(page);
-  const cartPage = new CartPage(page);
+test ('User Can Login',async({loginPage})=>{
+await loginPage.goto("https://www.xbox.com/en-IN");
+await loginPage.login("testingsushil9192@gmail.com","Sushil1417");
+await loginPage.sucessfullLogin();
+})
 
-  await loginPage.goto("https://www.xbox.com/en-IN");
-  await loginPage.login("testingsushil9192@gmail.com", "Sushil1417");
-  await loginPage.dismissPopups();
-  await loginPage.sucessfullLogin();
-  await cartPage.searchGame("Fortnite");
-  await cartPage.getStatusName();
+test ('User can Select Game',async({cartPage})=>{
+await cartPage.searchGame("Fortnite");
+await cartPage.getStatusName();
+})
 
-  
-});
